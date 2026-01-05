@@ -1,0 +1,60 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #f9e0ff, #dfefff);
+  color: #333;
+}
+
+header {
+  background: white;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #5e4b8b;
+  font-weight: 600;
+}
+
+main {
+  padding: 2rem;
+}
+
+.voice-journal {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  margin-top: 1rem;
+}
+
+.voice-journal button {
+  background-color: #7f5af0;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  margin-right: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.voice-journal button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.recording-entry {
+  margin-top: 10px;
+  background: #f3f0ff;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

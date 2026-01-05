@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MindEase | Voice Journal</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header>
+    <h1>🎙️ Voice Journal</h1>
+  </header>
+
+  <section class="voice-journal">
+    <p>Tap the button to start recording your thoughts 💭</p>
+    
+    <button id="startRecord">Start Recording</button>
+    <button id="stopRecord" disabled>Stop Recording</button>
+
+    <audio id="audioPlayback" controls></audio>
+    
+    <div id="saveStatus"></div>
+  </section>
+
+  <script src="js/voice-journal.js"></script>
+</body>
+</html>

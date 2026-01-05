@@ -1,0 +1,33 @@
+{
+  "c:/Users/Asus/Downloads/mindease/src/firebase.js": [
+    {
+      "id": "snippet",
+      "lines": "3-27",
+      "oss_lines": "3-27",
+      "matched": "88%",
+      "file_hash": "8506a02b76a292bd9e5091272aefd002",
+      "source_hash": "f248226e9b0579248e125898f0da860e",
+      "file_url": "https://api.osskb.org/file_contents/8506a02b76a292bd9e5091272aefd002",
+      "purl": [
+        "pkg:github/notjordanza/sdp-project"
+      ],
+      "vendor": "NotJordanZA",
+      "component": "SDP-Project",
+      "version": "v1.0",
+      "latest": "v1.0",
+      "url": "https://github.com/NotJordanZA/SDP-Project",
+      "status": "pending",
+      "release_date": "2024-11-08",
+      "file": "client/src/firebase.js",
+      "url_hash": "a08bda6652890693481a03ad98643ec7",
+      "licenses": [],
+      "server": {
+        "version": "5.4.19",
+        "kb_version": {
+          "monthly": "25.12",
+          "daily": "26.01.05"
+        }
+      }
+    }
+  ]
+}
