@@ -254,7 +254,7 @@ MIT License - feel free to use for personal or educational purposes
 
 ## 👏 Credits
 
-**Developer**: Sanchi Sisodia - MCA 2nd Year, Batch 'C'
+**Developer**: Sanchi Sisodia 
 
 **Technologies**:
 - Firebase (Auth & Database)
@@ -270,7 +270,6 @@ MIT License - feel free to use for personal or educational purposes
 
 **Your journey to mindfulness and wellness starts here** 🌿
 
-Made for full-stack development portfolio
 
 </div>
 
