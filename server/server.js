@@ -4,9 +4,10 @@ const cors = require("cors");
 const multer = require("multer");
 const axios = require("axios");
 const fs = require("fs");
+require('dotenv').config();
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(express.json());
@@ -16,7 +17,7 @@ const upload = multer({ dest: "uploads/" });
 // A simple in-memory store for transcription results
 const transcriptionStore = {};
 
-const ASSEMBLYAI_API_KEY = "9d272100f1404538b551d6e0a43c075e"; // Replace with your actual key
+const ASSEMBLYAI_API_KEY = process.env.ASSEMBLYAI_API_KEY;
 
 app.post("/transcribe", upload.single("audio"), async (req, res) => {
   if (!req.file) {
