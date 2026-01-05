@@ -13,6 +13,7 @@ import Profile from "./components/Profile";
 import Analytics from "./components/Analytics";
 import HabitTracker from "./components/HabitTracker";
 import MeditationTimer from "./components/MeditationTimer";
+import AdminDashboard from "./components/AdminDashboard";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 
@@ -96,6 +97,16 @@ function App() {
             <PrivateRoute>
               <MainLayout>
                 <Profile />
+              </MainLayout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <PrivateRoute>
+              <MainLayout>
+                <AdminDashboard />
               </MainLayout>
             </PrivateRoute>
           }
