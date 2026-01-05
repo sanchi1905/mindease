@@ -6,6 +6,9 @@
 
 A comprehensive mental health and wellness tracking application built with React, featuring mood tracking, gratitude journaling, voice journaling, meditation timers, habit tracking, and advanced analytics.
 
+**🚀 Live Demo:** [Coming Soon]
+**📦 Repository:** https://github.com/sanchi1905/mindease
+
 ---
 
 ## 🌟 Features
@@ -200,7 +203,50 @@ mindease/
 
 ---
 
-## 📄 License
+## � Deployment
+
+### Deploy Frontend to Vercel
+
+1. **Install Vercel CLI** (optional)
+```bash
+npm i -g vercel
+```
+
+2. **Deploy via Vercel Dashboard**
+- Go to [vercel.com](https://vercel.com)
+- Import your GitHub repository: `sanchi1905/mindease`
+- Vercel will auto-detect Vite
+- Add environment variables in Vercel dashboard:
+  - `VITE_FIREBASE_API_KEY`
+  - `VITE_FIREBASE_AUTH_DOMAIN`
+  - `VITE_FIREBASE_PROJECT_ID`
+  - `VITE_FIREBASE_STORAGE_BUCKET`
+  - `VITE_FIREBASE_MESSAGING_SENDER_ID`
+  - `VITE_FIREBASE_APP_ID`
+  - `VITE_API_URL` (backend URL after deploying server)
+- Click Deploy!
+
+### Deploy Backend to Render
+
+1. **Create New Web Service**
+- Go to [render.com](https://render.com)
+- Connect your GitHub repo
+- Set **Root Directory**: `server`
+- **Build Command**: `npm install`
+- **Start Command**: `node server.js`
+
+2. **Add Environment Variables**
+- `ASSEMBLYAI_API_KEY` - Your AssemblyAI API key
+- `PORT` - 3001 (or leave default)
+
+3. **Update Frontend**
+- After backend deploys, copy the Render URL
+- Update `VITE_API_URL` in Vercel environment variables
+- Redeploy frontend
+
+---
+
+## �📄 License
 
 MIT License - feel free to use for personal or educational purposes
 
