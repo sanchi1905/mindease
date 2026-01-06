@@ -6,12 +6,43 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Play, Pause, Volume2, Cloud, Waves, Wind as WindIcon, Music, Moon } from "lucide-react";
 import toast from "react-hot-toast";
 
+// Using direct audio file URLs from reliable sources
 const SOUNDS = [
-  { id: "rain", name: "Rain", icon: Cloud, color: "from-blue-400 to-blue-600", url: "https://cdn.pixabay.com/download/audio/2022/05/13/audio_257112ce24.mp3" },
-  { id: "ocean", name: "Ocean Waves", icon: Waves, color: "from-cyan-400 to-blue-500", url: "https://cdn.pixabay.com/download/audio/2022/06/07/audio_70588fae7c.mp3" },
-  { id: "forest", name: "Forest", icon: WindIcon, color: "from-green-400 to-green-600", url: "https://cdn.pixabay.com/download/audio/2022/03/10/audio_4e3f2f1e7e.mp3" },
-  { id: "piano", name: "Piano", icon: Music, color: "from-purple-400 to-purple-600", url: "https://cdn.pixabay.com/download/audio/2022/01/18/audio_4a36d2e70d.mp3" },
-  { id: "whitenoise", name: "White Noise", icon: Moon, color: "from-gray-400 to-gray-600", url: "https://cdn.pixabay.com/download/audio/2021/12/07/audio_daa867ec6f.mp3" },
+  { 
+    id: "rain", 
+    name: "Rain", 
+    icon: Cloud, 
+    color: "from-blue-400 to-blue-600", 
+    url: "https://www.soundjay.com/nature/sounds/rain-01.mp3" 
+  },
+  { 
+    id: "ocean", 
+    name: "Ocean Waves", 
+    icon: Waves, 
+    color: "from-cyan-400 to-blue-500", 
+    url: "https://www.soundjay.com/nature/sounds/ocean-wave-1.mp3" 
+  },
+  { 
+    id: "forest", 
+    name: "Forest", 
+    icon: WindIcon, 
+    color: "from-green-400 to-green-600", 
+    url: "https://www.soundjay.com/nature/sounds/forest-1.mp3" 
+  },
+  { 
+    id: "piano", 
+    name: "Piano", 
+    icon: Music, 
+    color: "from-purple-400 to-purple-600", 
+    url: "https://www.soundjay.com/music/sounds/piano-moment-4.mp3" 
+  },
+  { 
+    id: "whitenoise", 
+    name: "White Noise", 
+    icon: Moon, 
+    color: "from-gray-400 to-gray-600", 
+    url: "https://www.soundjay.com/nature/sounds/wind-chimes-1.mp3" 
+  },
 ];
 
 const SleepSounds = () => {
@@ -40,13 +71,41 @@ const SleepSounds = () => {
       setPlaying(null);
       toast.success("Sound paused");
     } else {
+      // Stop current audio first
+      if (playing) {
+        audioRef.current.pause();
+      }
+      
+      // Set new audio source and play
       audioRef.current.src = sound.url;
-      audioRef.current.play().catch((error) => {
-        console.error("Audio playback error:", error);
-        toast.error("Unable to play sound. Check your internet connection.");
-      });
-      setPlaying(sound.id);
-      toast.success(`Playing ${sound.name}`);
+      audioRef.current.load(); // Important: reload the audio element
+      
+      // Play with better error handling
+      const playPromise = audioRef.current.play();
+      
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setPlaying(sound.id);
+            toast.success(`Playing ${sound.name}`, {
+              icon: '🎵',
+              duration: 2000
+            });
+          })
+          .catch((error) => {
+            console.error("Audio playback error:", error);
+            setPlaying(null);
+            
+            // More specific error messages
+            if (error.name === 'NotAllowedError') {
+              toast.error("Please interact with the page first to enable audio");
+            } else if (error.name === 'NotSupportedError') {
+              toast.error("Audio format not supported");
+            } else {
+              toast.error("Unable to play sound. Try a different one.");
+            }
+          });
+      }
     }
   };
 

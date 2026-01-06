@@ -68,24 +68,90 @@ const Profile = () => {
 
   const handleExportData = () => {
     const data = {
+      exportDate: new Date().toISOString(),
       profile: {
         email: currentUser.email,
         userName,
         bio,
+        profilePic,
         joinedDate: currentUser.metadata?.creationTime
       },
+      // All journal entries
       gratitude: JSON.parse(localStorage.getItem(`gratitude_${currentUser?.uid}`) || '[]'),
-      moods: JSON.parse(localStorage.getItem(`mood_${currentUser?.uid}`) || '[]'),
+      voiceJournals: JSON.parse(localStorage.getItem(`voice_journals_${currentUser?.uid}`) || '[]'),
+      
+      // Mood & Analytics data
+      moods: JSON.parse(localStorage.getItem(`moods_${currentUser?.uid}`) || '[]'),
+      
+      // Progress tracking
       habits: JSON.parse(localStorage.getItem(`habits_${currentUser?.uid}`) || '[]'),
+      gamification: JSON.parse(localStorage.getItem(`gamification_${currentUser?.uid}`) || '{}'),
+      
+      // Community & Social
+      friends: JSON.parse(localStorage.getItem(`friends_${currentUser?.uid}`) || '[]'),
+      feed: JSON.parse(localStorage.getItem(`feed_${currentUser?.uid}`) || '[]'),
+      
+      // AI Chat history
+      aiChat: JSON.parse(localStorage.getItem(`ai_chat_${currentUser?.uid}`) || '[]'),
+      
+      // Settings
+      notificationPrefs: JSON.parse(localStorage.getItem(`notification_prefs_${currentUser?.uid}`) || '{}'),
     };
     
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `mindease-data-${new Date().toISOString().split('T')[0]}.json`;
+    a.download = `mindease-backup-${new Date().toISOString().split('T')[0]}.json`;
     a.click();
-    toast.success('Data exported successfully!');
+    URL.revokeObjectURL(url);
+    toast.success('✅ Complete backup downloaded! All your data is safely exported.');
+  };
+
+  const handleImportData = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const data = JSON.parse(event.target.result);
+        
+        // Validate it's a MindEase backup
+        if (!data.profile || !data.exportDate) {
+          toast.error('Invalid backup file. Please select a valid MindEase backup.');
+          return;
+        }
+
+        // Restore all data
+        if (data.gratitude) localStorage.setItem(`gratitude_${currentUser?.uid}`, JSON.stringify(data.gratitude));
+        if (data.voiceJournals) localStorage.setItem(`voice_journals_${currentUser?.uid}`, JSON.stringify(data.voiceJournals));
+        if (data.moods) localStorage.setItem(`moods_${currentUser?.uid}`, JSON.stringify(data.moods));
+        if (data.habits) localStorage.setItem(`habits_${currentUser?.uid}`, JSON.stringify(data.habits));
+        if (data.gamification) localStorage.setItem(`gamification_${currentUser?.uid}`, JSON.stringify(data.gamification));
+        if (data.friends) localStorage.setItem(`friends_${currentUser?.uid}`, JSON.stringify(data.friends));
+        if (data.feed) localStorage.setItem(`feed_${currentUser?.uid}`, JSON.stringify(data.feed));
+        if (data.aiChat) localStorage.setItem(`ai_chat_${currentUser?.uid}`, JSON.stringify(data.aiChat));
+        if (data.notificationPrefs) localStorage.setItem(`notification_prefs_${currentUser?.uid}`, JSON.stringify(data.notificationPrefs));
+        
+        // Restore profile
+        if (data.profile) {
+          setUserName(data.profile.userName || '');
+          setBio(data.profile.bio || '');
+          setProfilePic(data.profile.profilePic || '');
+          localStorage.setItem(`profile_${currentUser.uid}`, JSON.stringify(data.profile));
+        }
+
+        toast.success(`🎉 Backup restored successfully! Data from ${new Date(data.exportDate).toLocaleDateString()}`);
+        
+        // Refresh the page to load all restored data
+        setTimeout(() => window.location.reload(), 2000);
+      } catch (error) {
+        console.error('Import error:', error);
+        toast.error('Failed to restore backup. File may be corrupted.');
+      }
+    };
+    reader.readAsText(file);
   };
 
   return (
@@ -258,19 +324,31 @@ const Profile = () => {
               </div>
 
               {/* Actions */}
-              <div className="flex gap-4 flex-wrap">
-                <Button
-                  onClick={handleExportData}
-                  className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white"
-                >
-                  📥 Export My Data
-                </Button>
-                <Button
-                  onClick={() => toast.success('Feature coming soon!')}
-                  className="bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white"
-                >
-                  🎯 Set Goals
-                </Button>
+              <div className="space-y-4">
+                <div className="flex gap-4 flex-wrap">
+                  <Button
+                    onClick={handleExportData}
+                    className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white flex items-center gap-2"
+                  >
+                    📥 Export Backup
+                  </Button>
+                  <Button
+                    onClick={() => document.getElementById('import-backup').click()}
+                    className="bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white flex items-center gap-2"
+                  >
+                    📤 Restore Backup
+                  </Button>
+                  <input
+                    id="import-backup"
+                    type="file"
+                    accept=".json"
+                    onChange={handleImportData}
+                    className="hidden"
+                  />
+                </div>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  💾 <strong>Backup includes:</strong> All journals, moods, habits, community data, AI chat history, and settings. Keep your backup file safe!
+                </p>
               </div>
             </div>
           </CardContent>
