@@ -4,59 +4,120 @@
 
 > **✨ Crafted with 💜 by Sanchi Sisodia**
 
-A comprehensive mental health and wellness tracking application built with React, featuring mood tracking, gratitude journaling, voice journaling, meditation timers, habit tracking, and advanced analytics.
+A comprehensive mental health and wellness tracking application built with React, featuring 17+ powerful features including AI companion, mood insights, meditation library, community features, physical wellness routines, and smart notifications.
 
-**🚀 Live Demo:** [Coming Soon]
+**🚀 Live Demo:** https://mindease-sanchi-sisodias-projects.vercel.app
 **📦 Repository:** https://github.com/sanchi1905/mindease
 
 ---
 
-## 🌟 Features
+## 🌟 Complete Feature List
 
-### Core Features
-- **🔐 Authentication System** - Secure Firebase authentication with beautiful animated login/signup pages
+### 🎯 Core Mental Health Features
 - **😊 Mood Tracker** - Track daily moods with emoji selection and visual charts
+- **🧠 Mood Insights AI** - Pattern recognition, trigger identification, mood predictions
 - **🙏 Gratitude Journal** - Write and manage daily gratitude entries
 - **🎤 Voice Journal** - Record voice notes with AI-powered transcription (AssemblyAI)
 - **📊 Advanced Analytics** - Mood trends, distribution charts, and streak tracking
 - **🎯 Habit Tracker** - Create and track custom daily habits with 7-day grid
-- **🧘 Meditation Timer** - Customizable meditation sessions with breathing guides
-- **🌟 Daily Quotes** - Inspiring motivational quotes with beautiful UI
-- **👤 User Profile** - View statistics, export data, and track achievements
-- **🌓 Dark Mode** - System-wide dark theme with smooth transitions
 
-### UI/UX Enhancements
-- ✨ Framer Motion animations throughout
-- 🎨 Modern glassmorphism design
-- 🔔 Toast notifications for feedback
-- 🎯 Lucide icons for consistency
-- 📱 Fully responsive design
+### 🧘 Mindfulness & Relaxation
+- **🧘 Meditation Timer** - Customizable meditation sessions with breathing guides
+- **📚 Meditation Library** - 12+ guided meditations categorized by type (Stress, Sleep, Focus, Anxiety, Emotional, Wellness)
+- **😴 Sleep Sounds** - 5 calming soundscapes (Rain, Ocean, Forest, Piano, White Noise) with sleep timer
+- **🆘 SOS Quick Relief** - Emergency techniques: 5-4-3-2-1 Grounding, Box Breathing, Body Scan
+- **🧘‍♀️ Physical Wellness** - 6 yoga/stretching/exercise routines with step-by-step instructions
+
+### 🤖 AI-Powered Features
+- **💬 AI Wellness Companion** - 24/7 chatbot for personalized mental health support
+- **🔮 Mood Prediction** - AI analyzes patterns to predict tomorrow's mood
+- **📈 Smart Insights** - Identifies triggers, time-of-day patterns, streak analysis
+
+### 👥 Social & Community
+- **👫 Friends System** - Add friends, view their streaks, support each other
+- **🎉 Activity Feed** - Share achievements and celebrate milestones
+- **🏆 Group Challenges** - Join community challenges (7-Day Meditation, Gratitude Challenge)
+- **📊 Leaderboard** - Optional weekly rankings with XP scores (can be toggled)
+
+### 🎮 Gamification & Engagement
+- **🏅 Rewards System** - 8-level progression from "Seedling" to "Legend" (5000 XP)
+- **🎖️ Achievement Badges** - 6 achievements to unlock (First Mood, 7-Day Streak, etc.)
+- **🔥 Streak Tracking** - Daily login streaks with XP rewards
+- **⭐ XP Points** - Earn points for every activity: Mood (+5), Gratitude (+10), Voice (+15), Meditation (+20)
+
+### 🔔 Smart Notifications & Offline Support
+- **⏰ Smart Reminders** - Personalized notifications: Morning Mood, Evening Gratitude, Daily Quote, Streak Reminder
+- **📅 Weekly Insights** - Automated weekly summary of emotional patterns
+- **📴 Offline Mode** - Full PWA support with service worker caching
+- **🔄 Background Sync** - Auto-sync offline data when connection restored
+
+### 🎨 Premium UI/UX
+- **🌓 Dark Mode** - System-wide dark theme with smooth transitions
+- **✨ Framer Motion Animations** - Smooth transitions and micro-interactions throughout
+- **🎨 Glassmorphism Design** - Modern glass-card aesthetic
+- **📱 Fully Responsive** - Mobile-first design optimized for all devices
+- **🎯 Touch-Optimized** - 44px minimum touch targets (Apple HIG compliant)
+- **🔔 Toast Notifications** - Real-time feedback for all actions
+- **🌟 Daily Quotes** - Inspiring motivational quotes with beautiful UI
+
+### 🔐 Security & Data
+- **🔒 Firebase Authentication** - Secure email/password authentication
+- **📊 Firebase Analytics** - Track user engagement (signup, login, features)
+- **📥 Data Export** - Export all your data as JSON
+- **💾 Local Storage** - Offline-first data persistence
+- **👤 User Profile** - View statistics, export data, track achievements
 
 ---
 
 ## 🚀 Quick Start
 
+### Prerequisites
+- Node.js 16+ and npm
+- Firebase account
+- AssemblyAI account (for voice transcription)
+
 ### Installation
 
-**1. Install dependencies**
+**1. Clone and install dependencies**
 ```bash
+git clone https://github.com/sanchi1905/mindease.git
+cd mindease
 npm install
 cd server
 npm install
 cd ..
 ```
 
-**2. Configure Firebase**
-- Create a Firebase project at [firebase.google.com](https://firebase.google.com)
+**2. Configure Environment Variables**
+
+Create `.env` in root:
+```env
+VITE_FIREBASE_API_KEY=your_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
+```
+
+Create `server/.env`:
+```env
+ASSEMBLYAI_API_KEY=your_assemblyai_key
+```
+
+**3. Setup Firebase**
+- Create project at [firebase.google.com](https://firebase.google.com)
 - Enable Email/Password authentication
-- Update `src/firebase.js` with your credentials
+- Enable Analytics
+- Add your credentials to `.env`
 
-**3. Configure AssemblyAI (for voice transcription)**
+**4. Setup AssemblyAI**
 - Sign up at [AssemblyAI](https://www.assemblyai.com/)
-- Get your API key
-- Update `server/server.js` with your API key
+- Get API key from dashboard
+- Add to `server/.env`
 
-**4. Start development servers**
+**5. Start Development Servers**
 
 Terminal 1 - Frontend:
 ```bash
@@ -69,15 +130,33 @@ cd server
 node server.js
 ```
 
-**5. Open the app**
-- Navigate to `http://localhost:5173`
-- Create an account and start your wellness journey!
+**6. Access the App**
+- Open `http://localhost:5173`
+- Create account and explore all 17+ features!
 
 ---
 
-## 🎯 Usage Guide
+## 🎯 Feature Usage Guide
 
-### Getting Started
+### 🧠 AI Wellness Companion
+Navigate to AI Chat → Ask questions about anxiety, sleep, stress, motivation, or loneliness → Get personalized AI responses → View conversation history
+
+### 📚 Meditation Library
+Browse 12 guided meditations → Filter by category (Stress/Sleep/Focus) → Filter by duration (1-5, 6-10, 11-20, 20+ min) → Play/pause sessions → Track progress
+
+### 👥 Community Hub
+Add friends by email → Share achievements to feed → Join group challenges → View optional leaderboard → Celebrate milestones together
+
+### 🧘 Physical Wellness
+Choose from 6 routines → Filter by type (Yoga/Stretching/Exercise) → Follow step-by-step instructions → Use built-in timer → Track calories burned
+
+### 🔔 Smart Notifications
+Enable browser notifications → Set reminder times → Choose notification types → Test notifications → Customize schedule
+
+### 📴 Offline Support
+Install as PWA (Add to Home Screen) → Use all features offline → Data syncs automatically when online → Cached meditations & sounds available offline
+
+---
 1. **Sign Up** - Create your account
 2. **Track Mood** - Select how you're feeling
 3. **Write Gratitude** - Add what you're thankful for

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useTheme } from "../contexts/ThemeContext";
 import { motion } from "framer-motion";
-import { Moon, Sun, LogOut, Home, Smile, BookOpen, Mic, BarChart3, Target, Clock, User, Music, AlertCircle, Trophy } from "lucide-react";
+import { Moon, Sun, LogOut, Home, Smile, BookOpen, Mic, BarChart3, Target, Clock, User, Music, AlertCircle, Trophy, MessageCircle, Play, Users, Brain, Activity, Bell } from "lucide-react";
 import { Toaster } from "react-hot-toast";
 
 const MainLayout = ({ children }) => {
@@ -24,14 +24,20 @@ const MainLayout = ({ children }) => {
   const navItems = [
     { to: "/", label: "Home", icon: Home },
     { to: "/mood", label: "Mood", icon: Smile },
+    { to: "/insights", label: "Insights", icon: Brain },
+    { to: "/ai", label: "AI Chat", icon: MessageCircle },
+    { to: "/library", label: "Library", icon: Play },
     { to: "/gratitude", label: "Gratitude", icon: BookOpen },
     { to: "/voice", label: "Voice", icon: Mic },
-    { to: "/analytics", label: "Analytics", icon: BarChart3 },
-    { to: "/habits", label: "Habits", icon: Target },
     { to: "/meditation", label: "Meditation", icon: Clock },
+    { to: "/wellness", label: "Wellness", icon: Activity },
     { to: "/sleep", label: "Sleep", icon: Music },
     { to: "/sos", label: "SOS", icon: AlertCircle },
+    { to: "/community", label: "Community", icon: Users },
     { to: "/rewards", label: "Rewards", icon: Trophy },
+    { to: "/notifications", label: "Reminders", icon: Bell },
+    { to: "/analytics", label: "Analytics", icon: BarChart3 },
+    { to: "/habits", label: "Habits", icon: Target },
     { to: "/profile", label: "Profile", icon: User },
   ];
 

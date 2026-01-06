@@ -8,6 +8,8 @@
   "background_color": "#8b5cf6",
   "theme_color": "#8b5cf6",
   "orientation": "portrait-primary",
+  "categories": ["health", "lifestyle", "wellness"],
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "/favicon.svg",
@@ -24,6 +26,30 @@
       "src": "/icon-512.svg",
       "sizes": "512x512",
       "type": "image/svg+xml"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Check Mood",
+      "short_name": "Mood",
+      "description": "Track your current mood",
+      "url": "/mood",
+      "icons": [{ "src": "/favicon.svg", "sizes": "96x96" }]
+    },
+    {
+      "name": "SOS Relief",
+      "short_name": "SOS",
+      "description": "Quick anxiety relief techniques",
+      "url": "/sos",
+      "icons": [{ "src": "/favicon.svg", "sizes": "96x96" }]
+    },
+    {
+      "name": "AI Companion",
+      "short_name": "AI Chat",
+      "description": "Chat with your wellness companion",
+      "url": "/ai",
+      "icons": [{ "src": "/favicon.svg", "sizes": "96x96" }]
     }
   ]
 }

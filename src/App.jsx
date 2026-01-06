@@ -17,6 +17,12 @@ import AdminDashboard from "./components/AdminDashboard";
 import SleepSounds from "./components/SleepSounds";
 import SOSRelief from "./components/SOSRelief";
 import Gamification from "./components/Gamification";
+import AICompanion from "./components/AICompanion";
+import MeditationLibrary from "./components/MeditationLibrary";
+import Community from "./components/Community";
+import MoodInsights from "./components/MoodInsights";
+import PhysicalWellness from "./components/PhysicalWellness";
+import Notifications from "./components/Notifications";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 
@@ -138,6 +144,66 @@ function App() {
             <PrivateRoute>
               <MainLayout>
                 <Gamification />
+              </MainLayout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/ai"
+          element={
+            <PrivateRoute>
+              <MainLayout>
+                <AICompanion />
+              </MainLayout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/library"
+          element={
+            <PrivateRoute>
+              <MainLayout>
+                <MeditationLibrary />
+              </MainLayout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/community"
+          element={
+            <PrivateRoute>
+              <MainLayout>
+                <Community />
+              </MainLayout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/insights"
+          element={
+            <PrivateRoute>
+              <MainLayout>
+                <MoodInsights />
+              </MainLayout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/wellness"
+          element={
+            <PrivateRoute>
+              <MainLayout>
+                <PhysicalWellness />
+              </MainLayout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/notifications"
+          element={
+            <PrivateRoute>
+              <MainLayout>
+                <Notifications />
               </MainLayout>
             </PrivateRoute>
           }
