@@ -48,8 +48,12 @@ const AICompanion = () => {
   }, [currentUser]);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+    // Scroll to bottom with slight delay to ensure DOM updates
+    const timer = setTimeout(() => {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [messages, isTyping]);
 
   const saveMessages = (msgs) => {
     localStorage.setItem(`ai_chat_${currentUser?.uid}`, JSON.stringify(msgs));
@@ -142,7 +146,7 @@ const AICompanion = () => {
 
           <CardContent className="flex-1 flex flex-col p-4 md:p-6 overflow-hidden">
             {/* Messages Area */}
-            <div className="flex-1 overflow-y-auto space-y-4 mb-4 pr-2">
+            <div className="flex-1 overflow-y-auto space-y-4 mb-4 pr-2" style={{ maxHeight: "calc(100vh - 450px)", minHeight: "300px" }}>
               <AnimatePresence>
                 {messages.map((msg) => (
                   <motion.div

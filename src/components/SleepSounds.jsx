@@ -7,11 +7,11 @@ import { Play, Pause, Volume2, Cloud, Waves, Wind as WindIcon, Music, Moon } fro
 import toast from "react-hot-toast";
 
 const SOUNDS = [
-  { id: "rain", name: "Rain", icon: Cloud, color: "from-blue-400 to-blue-600", url: "/sounds/rain.mp3" },
-  { id: "ocean", name: "Ocean Waves", icon: Waves, color: "from-cyan-400 to-blue-500", url: "/sounds/ocean.mp3" },
-  { id: "forest", name: "Forest", icon: WindIcon, color: "from-green-400 to-green-600", url: "/sounds/forest.mp3" },
-  { id: "piano", name: "Piano", icon: Music, color: "from-purple-400 to-purple-600", url: "/sounds/piano.mp3" },
-  { id: "whitenoise", name: "White Noise", icon: Moon, color: "from-gray-400 to-gray-600", url: "/sounds/whitenoise.mp3" },
+  { id: "rain", name: "Rain", icon: Cloud, color: "from-blue-400 to-blue-600", url: "https://cdn.pixabay.com/download/audio/2022/05/13/audio_257112ce24.mp3" },
+  { id: "ocean", name: "Ocean Waves", icon: Waves, color: "from-cyan-400 to-blue-500", url: "https://cdn.pixabay.com/download/audio/2022/06/07/audio_70588fae7c.mp3" },
+  { id: "forest", name: "Forest", icon: WindIcon, color: "from-green-400 to-green-600", url: "https://cdn.pixabay.com/download/audio/2022/03/10/audio_4e3f2f1e7e.mp3" },
+  { id: "piano", name: "Piano", icon: Music, color: "from-purple-400 to-purple-600", url: "https://cdn.pixabay.com/download/audio/2022/01/18/audio_4a36d2e70d.mp3" },
+  { id: "whitenoise", name: "White Noise", icon: Moon, color: "from-gray-400 to-gray-600", url: "https://cdn.pixabay.com/download/audio/2021/12/07/audio_daa867ec6f.mp3" },
 ];
 
 const SleepSounds = () => {
@@ -38,13 +38,15 @@ const SleepSounds = () => {
     if (playing === sound.id) {
       audioRef.current.pause();
       setPlaying(null);
+      toast.success("Sound paused");
     } else {
-      // Note: Replace with actual sound files in production
       audioRef.current.src = sound.url;
-      audioRef.current.play().catch(() => {
-        toast.error("Add sound files to /public/sounds/ folder");
+      audioRef.current.play().catch((error) => {
+        console.error("Audio playback error:", error);
+        toast.error("Unable to play sound. Check your internet connection.");
       });
       setPlaying(sound.id);
+      toast.success(`Playing ${sound.name}`);
     }
   };
 
