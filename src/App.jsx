@@ -14,6 +14,9 @@ import Analytics from "./components/Analytics";
 import HabitTracker from "./components/HabitTracker";
 import MeditationTimer from "./components/MeditationTimer";
 import AdminDashboard from "./components/AdminDashboard";
+import SleepSounds from "./components/SleepSounds";
+import SOSRelief from "./components/SOSRelief";
+import Gamification from "./components/Gamification";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 
@@ -107,6 +110,34 @@ function App() {
             <PrivateRoute>
               <MainLayout>
                 <AdminDashboard />
+              </MainLayout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/sleep"
+          element={
+            <PrivateRoute>
+              <MainLayout>
+                <SleepSounds />
+              </MainLayout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/sos"
+          element={
+            <PrivateRoute>
+              <SOSRelief />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/rewards"
+          element={
+            <PrivateRoute>
+              <MainLayout>
+                <Gamification />
               </MainLayout>
             </PrivateRoute>
           }

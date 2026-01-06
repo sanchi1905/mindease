@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useTheme } from "../contexts/ThemeContext";
 import { motion } from "framer-motion";
-import { Moon, Sun, LogOut, Home, Smile, BookOpen, Mic, BarChart3, Target, Clock, User } from "lucide-react";
+import { Moon, Sun, LogOut, Home, Smile, BookOpen, Mic, BarChart3, Target, Clock, User, Music, AlertCircle, Trophy } from "lucide-react";
 import { Toaster } from "react-hot-toast";
 
 const MainLayout = ({ children }) => {
@@ -29,6 +29,9 @@ const MainLayout = ({ children }) => {
     { to: "/analytics", label: "Analytics", icon: BarChart3 },
     { to: "/habits", label: "Habits", icon: Target },
     { to: "/meditation", label: "Meditation", icon: Clock },
+    { to: "/sleep", label: "Sleep", icon: Music },
+    { to: "/sos", label: "SOS", icon: AlertCircle },
+    { to: "/rewards", label: "Rewards", icon: Trophy },
     { to: "/profile", label: "Profile", icon: User },
   ];
 
